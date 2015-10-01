@@ -192,6 +192,8 @@ void cwSurvexGlobalData::fixStationNames(cwSurveyChunk *chunk, cwSurvexBlockData
         cwStation station = chunk->station(i); //removePeriodFromStationName(chunk->station(i));
         chunk->setStation(station, i);
 
+        qDebug() << "station:" << station.name() << chunkBlock->ExportStations.contains(station.name());
+
         //See if the station is exported
         if(chunkBlock->ExportStations.contains(station.name())) {
             QString fullStationName = stationPrefix + station.name();

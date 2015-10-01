@@ -224,8 +224,16 @@ cwSurvexBlockData::cwSurvexBlockData(QObject* parent) :
  void cwSurvexBlockData::addExportStations(QStringList exportStations)
  {
      foreach(QString station, exportStations) {
-         ExportStations.insert(station);
+         ExportStations.insert(station.toUpper());
      }
+ }
+
+ /**
+  * @brief cwSurvexBlockData::addToEquated
+  * @param adds a list of stationNames that are equal to each other.
+  */
+ void cwSurvexBlockData::addToEquated(QStringList stationNames) {
+     EqualStations.append(stationNames);
  }
 
 

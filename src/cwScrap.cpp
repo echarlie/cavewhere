@@ -490,7 +490,7 @@ QList< QPair <cwNoteStation, cwNoteStation> > cwScrap::noteShots() const {
             QSet< cwStation > neighborsStation2 = stationNeighbors[j];
 
             //See if they make up a shot
-            if(neighborsStation1.contains(station2.name().toLower()) && neighborsStation2.contains(station1.name().toLower())) {
+            if(neighborsStation1.contains(station2.name().toUpper()) && neighborsStation2.contains(station1.name().toUpper())) {
                 shotList.append(QPair<cwNoteStation, cwNoteStation>(station1, station2));
             }
         }

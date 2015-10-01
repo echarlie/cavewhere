@@ -44,7 +44,7 @@ inline void cwStationPositionLookup::clearStations() {
   overwrite the position of the existing station
   */
 inline void cwStationPositionLookup::setPosition(const QString& stationName, const QVector3D& stationPosition) {
-    StationPositions[stationName.toLower()] = stationPosition;
+    StationPositions[stationName.toUpper()] = stationPosition;
 }
 
 /**
@@ -52,14 +52,14 @@ inline void cwStationPositionLookup::setPosition(const QString& stationName, con
   will return QVector3D()
   */
 inline QVector3D cwStationPositionLookup::position(const QString& stationName) const {
-    return StationPositions.value(stationName.toLower(), QVector3D());
+    return StationPositions.value(stationName.toUpper(), QVector3D());
 }
 
 /**
   Checks if the station position model has the position
   */
 inline bool cwStationPositionLookup::hasPosition(QString stationName) const {
-    return StationPositions.contains(stationName.toLower());
+    return StationPositions.contains(stationName.toUpper());
 }
 
 /**

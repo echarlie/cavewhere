@@ -217,29 +217,37 @@ void cwImportSurvexDialog::updateImportWarningLabel() {
   */
 void cwImportSurvexDialog::updateCurrentItem(QItemSelection selected, QItemSelection /*deselected*/) {
     QModelIndexList selectedIndexes = selected.indexes();
-    if(selectedIndexes.size() == 1) {
-        //Only one item selected
-        QModelIndex index = selectedIndexes.first();
-        cwSurvexBlockData* block = Model->toBlockData(index);
-        if(block != nullptr) {
+    if(selectedIndexes.size() >= 1) {
+        //Set the text for the combo box
 
-            //Set the index of the combo box
-            TypeItem item = importTypeToTypeItem(block->importType());
-            TypeComboBox->setCurrentIndex(item);
+        QString name;
+        if(selectedIndexes.size() == 1) {
+            //Only one item selected
+            QModelIndex index = selectedIndexes.first();
+            cwSurvexBlockData* block = Model->toBlockData(index);
+            if(block != nullptr) {
 
-            //Set the text for the combo box
-            QString name = block->name();
-            QString noImportStrting = QString("%1 %2").arg(cwSurvexBlockData::importTypeToString(cwSurvexBlockData::NoImport)).arg(name);
-            QString caveString  = QString("%1 is a %2").arg(name).arg(cwSurvexBlockData::importTypeToString(cwSurvexBlockData::Cave));
-            QString tripString = QString("%1 is a %2").arg(name).arg(cwSurvexBlockData::importTypeToString(cwSurvexBlockData::Trip));
+                //Set the index of the combo box
+                TypeItem item = importTypeToTypeItem(block->importType());
+                TypeComboBox->setCurrentIndex(item);
 
-            TypeComboBox->setItemText((int)NoImportItem, noImportStrting);
-            TypeComboBox->setItemText((int)CaveItem, caveString);
-            TypeComboBox->setItemText((int)TripItem, tripString);
-            TypeComboBox->setEnabled(true);
-            return;
+                name = block->name();
+            }
+        } else {
+            name = QString("%1 selected items").arg(selectedIndexes.size());
         }
+
+        QString noImportStrting = QString("%1 %2").arg(cwSurvexBlockData::importTypeToString(cwSurvexBlockData::NoImport)).arg(name);
+        QString caveString  = QString("%1 is a %2").arg(name).arg(cwSurvexBlockData::importTypeToString(cwSurvexBlockData::Cave));
+        QString tripString = QString("%1 is a %2").arg(name).arg(cwSurvexBlockData::importTypeToString(cwSurvexBlockData::Trip));
+
+        TypeComboBox->setItemText((int)NoImportItem, noImportStrting);
+        TypeComboBox->setItemText((int)CaveItem, caveString);
+        TypeComboBox->setItemText((int)TripItem, tripString);
+        TypeComboBox->setEnabled(true);
+        return;
     }
+
 
     TypeComboBox->setEnabled(false);
     TypeComboBox->setCurrentIndex(-1);

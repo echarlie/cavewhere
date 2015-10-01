@@ -139,13 +139,7 @@ inline QString cwSurvexBlockData::name() const {
     return Name;
 }
 
-/**
- * @brief cwSurvexBlockData::addToEquated
- * @param adds a list of stationNames that are equal to each other.
- */
-inline void cwSurvexBlockData::addToEquated(QStringList stationNames) {
-    EqualStations.append(stationNames);
-}
+
 
 
 /**

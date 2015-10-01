@@ -104,7 +104,7 @@ QString cwUnits::unitName(cwUnits::LengthUnit unit)
   If the string doesn't match any of the units, this will return UnitLess
   */
 cwUnits::LengthUnit cwUnits::toLengthUnit(QString unitString) {
-    unitString = unitString.toLower();
+    unitString = unitString.toUpper();
 
     if(unitString == "ft") {
         return Feet;

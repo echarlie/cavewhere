@@ -374,10 +374,10 @@ void cwCompassExportCaveTask::writeShot(QTextStream &stream,
                                         cwShot shot,
                                         bool LRUDShotOnly)
 {
-    writeData(stream, "From", 12, fromStation.name().toLower());
+    writeData(stream, "From", 12, fromStation.name().toUpper());
     stream << " ";
     if(LRUDShotOnly) {
-        writeData(stream, "To", 12, fromStation.name().toLower() + "lrud");
+        writeData(stream, "To", 12, fromStation.name().toUpper() + "lrud");
         stream << " ";
         stream << formatDouble(0.0) << " ";
         stream << formatDouble(0.0) << " ";
@@ -392,7 +392,7 @@ void cwCompassExportCaveTask::writeShot(QTextStream &stream,
             shot.setClino(-convertField(calibrations, shot, BackClino));
         }
 
-        writeData(stream, "To", 12, toStation.name().toLower());
+        writeData(stream, "To", 12, toStation.name().toUpper());
         stream << " ";
         stream << formatDouble(shotLength) << " ";
         stream << formatDouble(convertField(calibrations, shot, Compass)) << " ";

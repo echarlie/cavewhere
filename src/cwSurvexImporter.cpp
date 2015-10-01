@@ -494,8 +494,10 @@ void cwSurvexImporter::parseNormalData(QString line) {
     QStringList data = parseData(line);
     if(data.isEmpty()) { return; } //Error, check the error messages
 
-    QString fromStationName = extractData(data, From);
-    QString toStationName= extractData(data, To);
+    QString fromStationName = extractData(data, From).toUpper();
+    QString toStationName= extractData(data, To).toUpper();
+
+    qDebug() << "FromStation:" << fromStationName << toStationName;
 
     //Make sure the to and from stations exist
     if(fromStationName.isEmpty() || toStationName.isEmpty()) {
@@ -741,7 +743,7 @@ void cwSurvexImporter::parseCalibrate(QString line) {
     reg.setCaseSensitivity(Qt::CaseInsensitive);
 
     if(reg.exactMatch(line)) {
-        QString type = reg.cap(1).toLower();
+        QString type = reg.cap(1).toUpper();
         QString calibrationString = reg.cap(2);
         QString scaling = reg.cap(3);
 
@@ -824,7 +826,7 @@ void cwSurvexImporter::parseUnits(QString line) {
     reg.setCaseSensitivity(Qt::CaseInsensitive);
 
     if(reg.exactMatch(line)) {
-        QString type = reg.cap(1).toLower();
+        QString type = reg.cap(1).toUpper();
         QString unitString = reg.cap(2);
 
         //Get the current calibration
@@ -878,6 +880,10 @@ void cwSurvexImporter::parseEquate(QString line)
 {
     QRegExp splitRegex("\\s+");
     QStringList equalStations = line.split(splitRegex);
+
+    for(int i = 0; i < equalStations.size(); i++) {
+        equalStations[i].toUpper();
+    }
 
     if(equalStations.size() <= 1) {
         Errors.append(QString("Error: *equate on %1 has only one station").arg(currentLineNumber()));
