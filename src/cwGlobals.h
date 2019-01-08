@@ -11,6 +11,7 @@
 //Qt includes
 #include <QString>
 #include <QFileDialog>
+#include <QDir>
 
 /**
   These are required defines for exporting symbols in the cavewhere lib for
@@ -23,7 +24,7 @@
 #endif
 
 
-class cwGlobals
+class CAVEWHERE_LIB_EXPORT cwGlobals
 {
 public:
     cwGlobals();
@@ -35,6 +36,8 @@ public:
     static QString addExtension(QString filename, QString extensionHint);
     static QString convertFromURL(QString filenameUrl);
     static QString findExecutable(QStringList executables);
+    static QString findExecutable(const QStringList& executables, const QList<QDir>& dirs);
+    static QDir survexPath();
 };
 
 #endif // CWGLOBALS_H

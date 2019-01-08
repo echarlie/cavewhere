@@ -37,7 +37,7 @@ DynamicLibrary {
     }
     Depends { name: "QMath3d" }
     Depends { name: "squish" }
-    Depends { name: "plotsauce" }
+//    Depends { name: "plotsauce" }
     Depends { name: "protoc" }
     Depends { name: "protobuf" }
     Depends { name: "z" }
