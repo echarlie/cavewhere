@@ -450,7 +450,7 @@ void cwSurvexImporter::parseDataFormat(QString line) {
             dataFormat[Clino] = index;
         } else if(compare(format, "backclino")) {
             dataFormat[BackClino] = index;
-        } else if(compare(format, "ignore")) {
+        } else if(compare(format, "ignore") || compare(format, "backtape")) {
             dataFormat[Ignore] = index;
         } else if(compare(format, "ignoreall")) {
             dataFormat[IgnoreAll] = index;
